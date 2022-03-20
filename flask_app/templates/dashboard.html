@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <nav class="d-flex justify-content-around align-items-center col-12">
+        <h1 class="text-center">Welcome {{student.first_name}}</h1>
+        <div class="d-flex col-4 justify-content-around">
+            <a href="/new/essay" class="btn btn-primary">Add Essay</a>
+            <a href="/new/mbes" class="btn btn-primary">Add MBEs</a>
+            <a href="/new/pt" class="btn btn-primary">Add PT</a>
+            <a href="/logout" class="btn btn-info">Logout</a>
+        </div>
+    </nav>
+    <div class="col-8 mx-auto table-div">
+        <h2>All Completed Essays</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Subject</th>
+                    <th>Date Completed</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for essay in essays %}
+                    <tr>
+                        <td>{{essay.title}}</td>
+                        <td>{{essay.subject}}</td>
+                        <td>{{essay.date_completed}}</td>
+                        <td>{{essay.notes}}</td>
+                        <td>
+                            <a href="/show/essay/{{essay.id}}">Show</a>
+                            <a href="/edit/essay/{{essay.id}}">Edit</a>
+                            <a href="/destroy/essay/{{essay.id}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/new/essay" class="btn btn-primary">Add Essay</a>
+    </div>
+    <div class="col-8 mx-auto table-div">
+        <h2>All Completed PTs</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Date Completed</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pt in pts %}
+                    <tr>
+                        <td>{{pt.title}}</td>
+                        <td>{{pt.type}}</td>
+                        <td>{{pt.date_completed}}</td>
+                        <td>{{pt.notes}}</td>
+                        <td>
+                            <a href="/show/pt/{{pt.id}}">Show</a>
+                            <a href="/edit/pt/{{pt.id}}">Edit</a>
+                            <a href="/destroy/pt/{{pt.id}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/new/pt" class="btn btn-primary">Add New PT</a>
+    </div>
+    <div class="col-8 mx-auto table-div">
+        <h2>All Completed MBEs</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Number Completed</th>
+                    <th>Number Correct</th>
+                    <th>Date Completed</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mbe in mbes %}
+                    <tr>
+                        <td>{{mbe.num_completed}}</td>
+                        <td>{{mbe.num_correct}}</td>
+                        <td>{{mbe.date_completed}}</td>
+                        <td>{{mbe.notes}}</td>
+                        <td>
+                            <a href="/show/mbe/{{mbe.id}}">Show</a>
+                            <a href="/edit/mbe/{{mbe.id}}">Edit</a>
+                            <a href="/destroy/mbe/{{mbe.id}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/new/mbe" class="btn btn-primary">Add New MBEs</a>
+    </div>
+</body>
+</html>
